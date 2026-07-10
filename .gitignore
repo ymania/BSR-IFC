@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.db
+.bsr_snapshots/
+.bsr.db
+tmp/
+*.egg-info/
+dist/
+build/
+.rollback_tmp

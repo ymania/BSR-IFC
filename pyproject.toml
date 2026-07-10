@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "bsr"
+version = "0.1.0"
+description = "Building State Runtime — IFC 数据的 Agent 操作基础设施"
+requires-python = ">=3.9"
+dependencies = [
+    "ifcopenshell>=0.8",
+    "click>=8.0",
+]
+
+[project.scripts]
+bsr = "bsr.cli.main:cli"
+
+[tool.setuptools.packages.find]
+include = ["bsr*"]
