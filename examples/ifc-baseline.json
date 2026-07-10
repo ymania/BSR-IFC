@@ -1,0 +1,314 @@
+[
+  {
+    "file": "mep/Building-Hvac-IFC43.ifc",
+    "schema": "IFC4X3",
+    "entities": 153,
+    "types": {
+      "IfcFlowSegment": 1,
+      "IfcBuildingElementProxy": 2
+    },
+    "check": {
+      "passed": 4,
+      "total": 4,
+      "pass": true
+    }
+  },
+  {
+    "file": "mep/Building-Hvac.ifc",
+    "schema": "IFC4",
+    "entities": 156,
+    "types": {
+      "IfcFlowSegment": 1,
+      "IfcBuildingElementProxy": 2
+    },
+    "check": {
+      "passed": 4,
+      "total": 4,
+      "pass": true
+    }
+  },
+  {
+    "file": "mep/Infra-Plumbing.ifc",
+    "schema": "IFC4",
+    "entities": 440,
+    "types": {
+      "IfcFlowSegment": 24,
+      "IfcBuildingElementProxy": 1
+    },
+    "check": {
+      "passed": 2,
+      "total": 2,
+      "pass": true
+    }
+  },
+  {
+    "file": "infrastructure/Infra-Landscaping.ifc",
+    "schema": "IFC4",
+    "entities": 1488,
+    "types": {
+      "IfcBuildingElementProxy": 16
+    },
+    "check": {
+      "passed": 21,
+      "total": 32,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#1032",
+          "msg": "Group#16: NO geometry"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#822",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#858",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#886",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#914",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1218",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1249",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1394",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1425",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1453",
+          "msg": "highway location marker - sign: NOT in any storey"
+        },
+        {
+          "rule": "ElementHasParentRule",
+          "element": "#1481",
+          "msg": "highway location marker - sign: NOT in any storey"
+        }
+      ]
+    }
+  },
+  {
+    "file": "infrastructure/Infra-Rail.ifc",
+    "schema": "IFC4",
+    "entities": 728,
+    "types": {
+      "IfcBuildingElementProxy": 73
+    },
+    "check": {
+      "passed": 146,
+      "total": 146,
+      "pass": true
+    }
+  },
+  {
+    "file": "infrastructure/Infra-Road.ifc",
+    "schema": "IFC4",
+    "entities": 1186,
+    "types": {
+      "IfcSlab": 32,
+      "IfcBuildingElementProxy": 1
+    },
+    "check": {
+      "passed": 2,
+      "total": 2,
+      "pass": true
+    }
+  },
+  {
+    "file": "building/Building-Architecture-IFC43.ifc",
+    "schema": "IFC4X3",
+    "entities": 383,
+    "types": {
+      "IfcWall": 4,
+      "IfcSlab": 3,
+      "IfcSpace": 2,
+      "IfcBuildingElementProxy": 4,
+      "IfcRoof": 1
+    },
+    "check": {
+      "passed": 14,
+      "total": 16,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#172",
+          "msg": "Group#18: NO geometry"
+        },
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#302",
+          "msg": "Group#19: NO geometry"
+        }
+      ]
+    }
+  },
+  {
+    "file": "building/Building-Architecture.ifc",
+    "schema": "IFC4",
+    "entities": 444,
+    "types": {
+      "IfcWall": 4,
+      "IfcSlab": 3,
+      "IfcSpace": 2,
+      "IfcBuildingElementProxy": 5,
+      "IfcRoof": 1
+    },
+    "check": {
+      "passed": 16,
+      "total": 18,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#193",
+          "msg": "Group#18: NO geometry"
+        },
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#345",
+          "msg": "Group#19: NO geometry"
+        }
+      ]
+    }
+  },
+  {
+    "file": "building/Building-Structural-IFC43.ifc",
+    "schema": "IFC4X3",
+    "entities": 350,
+    "types": {
+      "IfcWall": 4,
+      "IfcBeam": 6,
+      "IfcBuildingElementProxy": 3,
+      "IfcRoof": 1
+    },
+    "check": {
+      "passed": 13,
+      "total": 14,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#144",
+          "msg": "Group#21: NO geometry"
+        }
+      ]
+    }
+  },
+  {
+    "file": "building/Building-Structural.ifc",
+    "schema": "IFC4",
+    "entities": 407,
+    "types": {
+      "IfcWall": 4,
+      "IfcBeam": 6,
+      "IfcBuildingElementProxy": 3,
+      "IfcRoof": 1
+    },
+    "check": {
+      "passed": 13,
+      "total": 14,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "GeometryExistsRule",
+          "element": "#162",
+          "msg": "Group#21: NO geometry"
+        }
+      ]
+    }
+  },
+  {
+    "file": "building/column-straight-rectangle-tessellation.ifc",
+    "schema": "IFC4",
+    "entities": 26,
+    "types": {
+      "IfcColumn": 1
+    },
+    "check": {
+      "passed": 0,
+      "total": 0,
+      "pass": true
+    }
+  },
+  {
+    "file": "building/wall-with-opening-and-window.ifc",
+    "schema": "IFC4",
+    "entities": 127,
+    "types": {
+      "IfcWall": 1,
+      "IfcWindow": 1
+    },
+    "check": {
+      "passed": 2,
+      "total": 3,
+      "pass": false,
+      "fails": [
+        {
+          "rule": "DepthRangeRule",
+          "element": "#45",
+          "msg": "Wall for Test Example Depth=2000.00m > max(20.00m) for type"
+        }
+      ]
+    }
+  },
+  {
+    "file": "bridge/Infra-Bridge-IFC43.ifc",
+    "schema": "IFC4X3",
+    "entities": 883,
+    "types": {
+      "IfcWall": 4,
+      "IfcSlab": 3,
+      "IfcBeam": 8,
+      "IfcColumn": 7,
+      "IfcBuildingElementProxy": 1,
+      "IfcBridge": 3
+    },
+    "check": {
+      "passed": 10,
+      "total": 10,
+      "pass": true
+    }
+  },
+  {
+    "file": "bridge/Infra-Bridge.ifc",
+    "schema": "IFC4",
+    "entities": 953,
+    "types": {
+      "IfcWall": 4,
+      "IfcSlab": 3,
+      "IfcBeam": 8,
+      "IfcColumn": 7,
+      "IfcBuildingElementProxy": 9
+    },
+    "check": {
+      "passed": 26,
+      "total": 26,
+      "pass": true
+    }
+  }
+]
