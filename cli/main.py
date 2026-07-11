@@ -320,9 +320,27 @@ def cmd_task(name, ifc_path, floor, prefix, element, proto, list_tasks_flag):
     """执行工程任务（如 rename-room）"""
     # 注册所有任务
     from tasks.naming.rename_room import run as run_rename, TaskInput as RenameInput
+    from tasks.naming.rename_storey import run as run_rename_storey, TaskInput as RenameStoreyInput
+    from tasks.property.standardize import run as run_standardize, TaskInput as StandardizeInput
+    from tasks.property.check_attributes import run as run_check_attrs, TaskInput as CheckAttrsInput
+    from tasks.report.element_stats import run as run_element_stats, TaskInput as ElementStatsInput
+    from tasks.report.room_area_summary import run as run_room_area, TaskInput as RoomAreaInput
+    from tasks.report.generate_change_report import run as run_change_report, TaskInput as ChangeReportInput
+    from tasks.quantity.check_duplicates import run as run_check_dupes, TaskInput as CheckDupesInput
+    from tasks.quantity.classify_elements import run as run_classify, TaskInput as ClassifyInput
+    from tasks.fire.fix_guid import run as run_fix_guid, TaskInput as FixGuidInput
     from planner.router import register, run_task, list_tasks
 
     register("rename-room", run_rename)
+    register("rename-storey", run_rename_storey)
+    register("property-standardize", run_standardize)
+    register("check-attributes", run_check_attrs)
+    register("element-stats", run_element_stats)
+    register("room-area-summary", run_room_area)
+    register("change-report", run_change_report)
+    register("check-duplicates", run_check_dupes)
+    register("classify-elements", run_classify)
+    register("fix-guid", run_fix_guid)
 
     if list_tasks_flag:
         click.echo("可用任务:")
@@ -335,12 +353,24 @@ def cmd_task(name, ifc_path, floor, prefix, element, proto, list_tasks_flag):
         raise SystemExit(1)
 
     # 构造输入
-    if name == "rename-room":
-        inp = RenameInput(floor=floor, prefix=prefix, elements=list(element) if element else [],
-                          ifc_path=ifc_path, protected=proto)
-    else:
+    task_input_map = {
+        "rename-room": lambda: RenameInput(floor=floor, prefix=prefix, elements=list(element) if element else [],
+                                           ifc_path=ifc_path, protected=proto),
+        "rename-storey": lambda: RenameStoreyInput(ifc_path=ifc_path, protected=proto),
+        "fix-guid": lambda: FixGuidInput(ifc_path=ifc_path, protected=proto),
+        "property-standardize": lambda: StandardizeInput(ifc_path=ifc_path, protected=proto),
+        "check-attributes": lambda: CheckAttrsInput(ifc_path=ifc_path, protected=proto),
+        "element-stats": lambda: ElementStatsInput(ifc_path=ifc_path),
+        "room-area-summary": lambda: RoomAreaInput(ifc_path=ifc_path),
+        "change-report": lambda: ChangeReportInput(ifc_path=ifc_path),
+        "check-duplicates": lambda: CheckDupesInput(ifc_path=ifc_path),
+        "classify-elements": lambda: ClassifyInput(ifc_path=ifc_path),
+    }
+    builder = task_input_map.get(name)
+    if not builder:
         click.echo(f"unknown task: {name}. available: {list_tasks()}")
         raise SystemExit(1)
+    inp = builder()
 
     result = run_task(name, inp)
     if not result:
@@ -352,6 +382,43 @@ def cmd_task(name, ifc_path, floor, prefix, element, proto, list_tasks_flag):
     click.echo(f"Operations: {result['operations']}")
     for m in result.get("modified", [])[:5]:
         click.echo(f"  {m['element']} {m['old']} → {m['new']}")
+    for f in result.get("filled", [])[:5]:
+        click.echo(f"  {f}")
+    # 只读 Task 的额外输出
+    if name == "element-stats":
+        stats = result.get("stats", [])
+        total = result.get("total_elements", 0)
+        click.echo(f"  总实体: {total}")
+        for s in stats[:10]:
+            click.echo(f"  {s['type']} ({s['ifc_class']}): {s['count']}")
+    elif name == "check-attributes":
+        issues = result.get("issues", [])
+        if result.get("total_issues", 0) == 0:
+            click.echo("  ✅ 所有关键属性完整")
+        for i in issues[:5]:
+            click.echo(f"  ❌ {i['element']} {i['type']}: 缺失 {', '.join(i['missing'])}")
+    elif name == "room-area-summary":
+        rooms = result.get("rooms", [])
+        click.echo(f"  房间数: {len(rooms)} | 总面积(Gross): {result.get('total_gross', 0)} | 净面积(Net): {result.get('total_net', 0)}")
+        for rm in rooms[:5]:
+            click.echo(f"  {rm['storey']} | {rm['name']}: {rm['gross']} / {rm['net']}")
+    elif name == "check-duplicates":
+        dup_guids = result.get("duplicate_guids", [])
+        dup_names = result.get("duplicate_names", [])
+        rd = result.get("total_duplicates", 0)
+        if rd == 0: click.echo("  ✅ 无重复构件")
+        for d in dup_guids[:3]:
+            click.echo(f"  ❌ GUID重复 {d['guid']}: {d['count']}个元素")
+        for d in dup_names[:3]:
+            click.echo(f"  ❌ 同名 {d['name_storey']}: {d['count']}个元素")
+    elif name == "classify-elements":
+        mis = result.get("misclassified", [])
+        if not mis: click.echo("  ✅ 所有构件分类正确")
+        for m_item in mis[:5]:
+            click.echo(f"  ⚠️  {m_item['element']} '{m_item['name']}' 应改为 {m_item['suggested_type']}")
+    elif name == "change-report":
+        text = result.get("report_text", "")
+        click.echo(text[:500] if text else "  无修改记录")
     for e in result.get("errors", []):
         click.echo(f"  Error: {e}")
     if result["status"] != "success":
