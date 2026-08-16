@@ -1,0 +1,143 @@
+{
+  "name": "bsr-task-skills",
+  "owner": {
+    "name": "ymania",
+    "email": "3500249466@qq.com"
+  },
+  "metadata": {
+    "description": "BSR Task Library — 50 个建筑 IFC 工程任务 skills（Agent Skills 格式）",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "bsr-fire-safety",
+      "description": "BSR fire-safety skills (5 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/set-walls-fire-rating",
+        "./skills/check-medical-gas-zoning",
+        "./skills/label-fire-zones",
+        "./skills/add-pset-fire-rating",
+        "./skills/add-pset-door-fire-rating"
+      ]
+    },
+    {
+      "name": "bsr-general",
+      "description": "BSR general skills (1 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/copy-properties-from-type"
+      ]
+    },
+    {
+      "name": "bsr-infrastructure",
+      "description": "BSR infrastructure skills (3 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/check-crane-clearance",
+        "./skills/rename-bridge-parts",
+        "./skills/assign-bridge-materials"
+      ]
+    },
+    {
+      "name": "bsr-mep",
+      "description": "BSR mep skills (3 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/extract-mep-schedules",
+        "./skills/check-duct-connectivity",
+        "./skills/assign-system-to-mep"
+      ]
+    },
+    {
+      "name": "bsr-openings",
+      "description": "BSR openings skills (2 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/rename-doors-by-room",
+        "./skills/check-door-width-minimum"
+      ]
+    },
+    {
+      "name": "bsr-property-data",
+      "description": "BSR property-data skills (8 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/normalize-property-names",
+        "./skills/duplicate-guid-fix",
+        "./skills/check-attribute-mandatory",
+        "./skills/normalize-owner-history",
+        "./skills/check-ifc-object-names",
+        "./skills/check-ifc-classification",
+        "./skills/fix-empty-property-values",
+        "./skills/check-reverse-attributes"
+      ]
+    },
+    {
+      "name": "bsr-reporting",
+      "description": "BSR reporting skills (2 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/export-ifc-to-csv-schedule",
+        "./skills/export-element-tree"
+      ]
+    },
+    {
+      "name": "bsr-space-planning",
+      "description": "BSR space-planning skills (12 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/rename-spaces",
+        "./skills/count-spaces-by-floor",
+        "./skills/generate-room-finish-schedule",
+        "./skills/add-ifc-zone-definition",
+        "./skills/fix-overlapping-spaces",
+        "./skills/classify-hospital-rooms",
+        "./skills/auto-name-classrooms",
+        "./skills/check-classroom-capacity",
+        "./skills/check-ifc-space-names",
+        "./skills/add-ifc-building-storey",
+        "./skills/assign-element-to-storey",
+        "./skills/extract-space-boundaries"
+      ]
+    },
+    {
+      "name": "bsr-structure",
+      "description": "BSR structure skills (7 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/standardize-wall-types",
+        "./skills/fix-floating-slabs",
+        "./skills/fix-ifc-openings-missing",
+        "./skills/add-qto-wall-quantities",
+        "./skills/add-qto-slab-quantities",
+        "./skills/check-ifc-material-assignment",
+        "./skills/check-beam-column-connectivity"
+      ]
+    },
+    {
+      "name": "bsr-validation",
+      "description": "BSR validation skills (7 个)",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/validate-ifc-syntax",
+        "./skills/check-spatial-containment",
+        "./skills/check-ifc-class-not-abstract",
+        "./skills/fix-broken-ifc-relationships",
+        "./skills/convert-ifc2x3-to-ifc4",
+        "./skills/create-ifc-project-structure",
+        "./skills/validate-ifc-ids"
+      ]
+    }
+  ]
+}
